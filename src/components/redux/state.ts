@@ -1,12 +1,30 @@
 import {rerenderEntireTree} from '../../render';
 
 export type StateType = {
-    profilePage:any,
-    messagesPage:any
+    profilePage: ProfilePageType
+    messagesPage: MessagePageType
 }
-
-
-
+export type ProfilePageType={
+    posts: PostsPropsType[]
+    updateText: string
+}
+export type PostsPropsType ={
+    id: number
+    message: string
+    likesCount: number
+}
+export type MessagePageType = {
+    dialogsData: DialogsDataPropsType[]
+    messagesData: MessagesDataPropsType[]
+}
+export type DialogsDataPropsType = {
+    id: number
+    name: string
+}
+export type MessagesDataPropsType={
+    id: number
+    message: string
+}
 let state: StateType = {
     profilePage: {
         posts: [
