@@ -21,7 +21,7 @@ function App(props:AppPropsType) {
             <Nav/>
             <div className="app-wrapper-content">
                 <Routes>
-                    <Route path={'/profile'} element={<Profile profilePage={props.state.profilePage}/>}/>
+                    <Route path={'/Profile'} element={<Profile profilePage={props.state.profilePage}/>}/>
                     <Route path={'/Messenger'} element={<Dialogs messagesPage={props.state.messagesPage}/>}/>
                 </Routes>
             </div>
