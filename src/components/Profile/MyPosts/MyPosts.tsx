@@ -1,16 +1,18 @@
 import React, {useRef} from 'react';
 import s from './MyPosts.module.css';
+import {PostsPropsType} from "../../redux/state";
+import Post from "./Post/Post";
 
-type MyPostsProps = {
-
+type MyPostsPropsType = {
+    myPosts: PostsPropsType[]
 }
 
-const MyPosts = () => {
+const MyPosts = (props:MyPostsPropsType) => {
 
     let newTextElement = useRef<HTMLTextAreaElement>(null);
 
 
-    let postsElements;
+    let postsElements = props.myPosts.map(el => <Post title={el.message} likesCount={el.likesCount}/>);
 
     const addPost = () => {}
 

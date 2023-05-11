@@ -53,7 +53,7 @@ let state: StateType = {
     }
 }
 
-export let addPost = (postMessage: any) => {
+export let addPost = (postMessage: string) => {
     let newPost = {
         id: 5,
         message: postMessage,

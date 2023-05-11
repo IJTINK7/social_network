@@ -5,23 +5,24 @@ import Nav from './components/Nav/Nav';
 import Profile from './components/Profile/Profile';
 import {Dialogs} from './components/Dialogs/Dialogs';
 import {Route, Routes} from 'react-router-dom';
+import {StateType} from "./components/redux/state";
 
 
-type AppProps = {
-    state: any,
+type AppPropsType = {
+    state: StateType
     addPost:any
 }
 
 
-function App(props:AppProps) {
+function App(props:AppPropsType) {
     return (
         <div className="app-wrapper">
             <Header/>
             <Nav/>
             <div className="app-wrapper-content">
                 <Routes>
+                    <Route path={'/profile'} element={<Profile profilePage={props.state.profilePage}/>}/>
                     <Route path={'/dialogs'} element={<Dialogs />}/>
-                    <Route path={'/profile'} element={<Profile/>}/>
                 </Routes>
             </div>
         </div>

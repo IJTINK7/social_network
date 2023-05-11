@@ -4,14 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
-import {addPost} from './components/redux/state';
+import {addPost, StateType} from './components/redux/state';
 
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 
-export let rerenderEntireTree = (state: any) => {
+export let rerenderEntireTree = (state: StateType) => {
     root.render(
         <BrowserRouter>
             <React.StrictMode>
