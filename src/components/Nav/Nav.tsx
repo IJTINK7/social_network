@@ -11,7 +11,7 @@ const navigate = useNavigate()
 
     return <nav className={classes.nav}>
 
-        <div className={classes.item} onClick={() => {NavigateHandler('Profile')}}>Profile</div>
+        <div className={classes.item} onClick={() => {NavigateHandler('profile')}}>Profile</div>
 
         <div className={classes.item} onClick={() => {NavigateHandler('Messenger')}}>Messenger</div>
 

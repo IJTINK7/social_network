@@ -1,13 +1,13 @@
 import React from 'react';
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import {ProfilePageType} from "../redux/state";
+import { ProfilePageType } from '../redux/state';
 
-type ProfilePropsType = {
-    profilePage: ProfilePageType
+type ProfileProps = {
+   profilePage: ProfilePageType
 }
 
-const Profile = (props:ProfilePropsType) => {
+const Profile = (props: ProfileProps) => {
 
     return <div>
         <ProfileInfo/>

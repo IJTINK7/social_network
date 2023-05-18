@@ -5,12 +5,12 @@ import Nav from './components/Nav/Nav';
 import Profile from './components/Profile/Profile';
 import {Dialogs} from './components/Dialogs/Dialogs';
 import {Route, Routes} from 'react-router-dom';
-import {StateType} from "./components/redux/state";
+import { StateType } from './components/redux/state';
 
 
 type AppPropsType = {
-    state: StateType
-    addPost:any
+    state: StateType,
+    addPost: (postMessage: string)=> void
 }
 
 
@@ -21,8 +21,8 @@ function App(props:AppPropsType) {
             <Nav/>
             <div className="app-wrapper-content">
                 <Routes>
-                    <Route path={'/Profile'} element={<Profile profilePage={props.state.profilePage}/>}/>
                     <Route path={'/Messenger'} element={<Dialogs messagesPage={props.state.messagesPage}/>}/>
+                    <Route path={'/profile'} element={<Profile profilePage={props.state.profilePage}/>}/>
                 </Routes>
             </div>
         </div>
