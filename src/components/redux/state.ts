@@ -1,6 +1,8 @@
 // import { rerenderEntireTree } from '../../render';
 
-let rerenderEntireTreeCopy = (state: StateType)=>{}
+import {RootActionType} from "../../types/actionType";
+
+// let rerenderEntireTreeCopy = (state: StateType)=>{}
 
 export type StateType = {
     profilePage: ProfilePageType,
@@ -35,78 +37,104 @@ export type MessagesDateType = {
     message: string
 }
 
-
-export let state: StateType = {
-    profilePage: {
-        posts: [
-            { id: 1, message: 'my first post', likesCount: 12 },
-            { id: 2, message: 'how are you ?', likesCount: 11 },
-            { id: 3, message: 'put likes', likesCount: 17 }
-        ],
-        updateText: '',
+export const store = {
+    _state: {
+        profilePage: {
+            posts: [
+                { id: 1, message: 'my first post', likesCount: 12 },
+                { id: 2, message: 'how are you ?', likesCount: 11 },
+                { id: 3, message: 'put likes', likesCount: 17 }
+            ],
+            updateText: '',
+        },
+        messagesPage: {
+            dialogsData: [
+                { id: 1, name: 'Yulia' },
+                { id: 2, name: 'semen' },
+                { id: 3, name: 'Tereza' },
+                { id: 4, name: 'Lola' },
+                { id: 5, name: 'Evgenia' },
+                { id: 6, name: 'Sonja' }
+            ],
+            messagesData: [
+                { id: 1, message: 'Hi' },
+                { id: 2, message: 'How is your it-Kamasutra?' },
+                { id: 3, message: 'Yo' },
+                { id: 4, message: 'Yo' },
+                { id: 5, message: 'Yo' },
+                { id: 6, message: 'Yo' },
+            ],
+            updateMassage:''
+        },
+    } as StateType,
+    _subscribe (observer: (state: StateType)=>void){
+        this._callSubscriber = observer
     },
-    messagesPage: {
-        dialogsData: [
-            { id: 1, name: 'Yulia' },
-            { id: 2, name: 'semen' },
-            { id: 3, name: 'Tereza' },
-            { id: 4, name: 'Lola' },
-            { id: 5, name: 'Evgenia' },
-            { id: 6, name: 'Sonja' }
-        ],
-        messagesData: [
-            { id: 1, message: 'Hi' },
-            { id: 2, message: 'How is your it-Kamasutra?' },
-            { id: 3, message: 'Yo' },
-            { id: 4, message: 'Yo' },
-            { id: 5, message: 'Yo' },
-            { id: 6, message: 'Yo' },
-        ],
-        updateMassage:''
+    _callSubscriber(state: StateType){
+        console.log("state")
     },
+    getState(){
+        return this._state
+    },
+    dispatch(action: RootActionType) {
+        if (action.type === "ADD-POST") {
+            let newPost = {
+                id: 5,
+                message: action.newMessage,
+                likesCount: 0
+            };
+            this._state.profilePage.posts.unshift(newPost)
+            this._state.profilePage.updateText = ''
+            this._callSubscriber(this._state);
+        } else if (action.type === "UPDATE-TEXT") {
+            this._state.profilePage.updateText = action.newText
+            this._callSubscriber(this._state);
+        } else if (action.type === "UPDATE-MESSAGE") {
+            this._state.messagesPage.updateMassage = action.newMassageText
+            this._callSubscriber(this._state);
+        }else if(action.type === "ADD-MESSAGE"){
+            let newMessage = {
+                id: 9,
+                message: action.message
+            }
+            this._state.messagesPage.messagesData.push(newMessage)
+            this._state.messagesPage.updateMassage = ''
+            this._callSubscriber(this._state);
+        }
 
-
+    },
 }
-
-export let updateText = (newText: string) => {
-    state.profilePage.updateText = newText
-    rerenderEntireTreeCopy(state);
-}
-
-export let addPost = (postMessage: string) => {
-    let newPost = {
-        id: 5,
-        message: postMessage,
-        likesCount: 0
-    };
-    state.profilePage.posts.unshift(newPost)
-    state.profilePage.updateText = ''
-    rerenderEntireTreeCopy(state);
-}
-
-export const addMassage = (message: string) => {
-    let newMessage = {
-        id: 9,
-        message
-    }
-    state.messagesPage.messagesData.push(newMessage)
-    state.messagesPage.updateMassage = ''
-    rerenderEntireTreeCopy(state);
-}
-
-export const  updateMassageText = (newMassageText: string)=>{
-    state.messagesPage.updateMassage = newMassageText
-
-    rerenderEntireTreeCopy(state);
-    console.log(state);
-    
-}
-
-export const subsribe = (obsrver: (state: StateType)=>void)=>{
- rerenderEntireTreeCopy = obsrver
- }
-
-
+// export let state: StateType = {
+//     profilePage: {
+//         posts: [
+//             { id: 1, message: 'my first post', likesCount: 12 },
+//             { id: 2, message: 'how are you ?', likesCount: 11 },
+//             { id: 3, message: 'put likes', likesCount: 17 }
+//         ],
+//         updateText: '',
+//     },
+//     messagesPage: {
+//         dialogsData: [
+//             { id: 1, name: 'Yulia' },
+//             { id: 2, name: 'semen' },
+//             { id: 3, name: 'Tereza' },
+//             { id: 4, name: 'Lola' },
+//             { id: 5, name: 'Evgenia' },
+//             { id: 6, name: 'Sonja' }
+//         ],
+//         messagesData: [
+//             { id: 1, message: 'Hi' },
+//             { id: 2, message: 'How is your it-Kamasutra?' },
+//             { id: 3, message: 'Yo' },
+//             { id: 4, message: 'Yo' },
+//             { id: 5, message: 'Yo' },
+//             { id: 6, message: 'Yo' },
+//         ],
+//         updateMassage:''
+//     },
+//
+//
+// }
 
 
 // Показать дебагером работу flux
