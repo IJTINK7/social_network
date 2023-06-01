@@ -1,24 +1,27 @@
-import { rerenderEntireTree } from '../../render';
+// import { rerenderEntireTree } from '../../render';
+
+let rerenderEntireTreeCopy = (state: StateType)=>{}
 
 export type StateType = {
     profilePage: ProfilePageType,
     messagesPage: MassagePageType
 }
 
-export type PostType ={
+export type PostType = {
     id: number
     message: string
     likesCount: number
 }
 
 export type ProfilePageType = {
-    posts:PostType[]
+    posts: PostType[]
     updateText: string
 }
 
 export type MassagePageType = {
     dialogsData: DialogsDateType[]
     messagesData: MessagesDateType[]
+    updateMassage:string
 }
 
 
@@ -33,7 +36,7 @@ export type MessagesDateType = {
 }
 
 
-let state: StateType = {
+export let state: StateType = {
     profilePage: {
         posts: [
             { id: 1, message: 'my first post', likesCount: 12 },
@@ -58,8 +61,16 @@ let state: StateType = {
             { id: 4, message: 'Yo' },
             { id: 5, message: 'Yo' },
             { id: 6, message: 'Yo' },
-        ]
-    }
+        ],
+        updateMassage:''
+    },
+
+
+}
+
+export let updateText = (newText: string) => {
+    state.profilePage.updateText = newText
+    rerenderEntireTreeCopy(state);
 }
 
 export let addPost = (postMessage: string) => {
@@ -68,9 +79,41 @@ export let addPost = (postMessage: string) => {
         message: postMessage,
         likesCount: 0
     };
-
     state.profilePage.posts.unshift(newPost)
-    rerenderEntireTree(state);
+    state.profilePage.updateText = ''
+    rerenderEntireTreeCopy(state);
 }
 
-export default state;
+export const addMassage = (message: string) => {
+    let newMessage = {
+        id: 9,
+        message
+    }
+    state.messagesPage.messagesData.push(newMessage)
+    state.messagesPage.updateMassage = ''
+    rerenderEntireTreeCopy(state);
+}
+
+export const  updateMassageText = (newMassageText: string)=>{
+    state.messagesPage.updateMassage = newMassageText
+
+    rerenderEntireTreeCopy(state);
+    console.log(state);
+    
+}
+
+export const subsribe = (obsrver: (state: StateType)=>void)=>{
+ rerenderEntireTreeCopy = obsrver
+ }
+
+
+
+
+// Показать дебагером работу flux
+// Пофиксить что бы брали значение поста в state / рассказать что нарушаем функциональное 
+// Написать функцию добавления нового сообщения
+// Написать функцию добавления нового символа updateMassageText      
+// Добавление постов и сообщение по Enter
+// Добавить обнудение в инпуты
+
+// 37 урок
