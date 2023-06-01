@@ -5,15 +5,13 @@ import Nav from './components/Nav/Nav';
 import Profile from './components/Profile/Profile';
 import {Dialogs} from './components/Dialogs/Dialogs';
 import {Route, Routes} from 'react-router-dom';
-import { StateType } from './components/redux/state';
+import {StateType, store} from './components/redux/state';
+import {RootActionType} from "./types/actionType";
 
 
 type AppPropsType = {
     state: StateType,
-    addPost: (postMessage: string)=> void
-    updateText: (newText: string) => void
-    addMassage: (message: string) => void
-    updateMassageText: (newMassageText: string) => void
+    dispatch:(action:RootActionType)=> void
 }
 
 
@@ -24,8 +22,8 @@ function App(props:AppPropsType) {
             <Nav/>
             <div className="app-wrapper-content">
                 <Routes>
-                    <Route path={'/dialogs'} element={<Dialogs  updateMassageText={props.updateMassageText} addMassage={props.addMassage}  messagesPage={props.state.messagesPage}/>}/>
-                    <Route path={'/profile'} element={<Profile updateText={props.updateText} addPost={props.addPost} profilePage={props.state.profilePage}/>}/>
+                    <Route path={'/dialogs'} element={<Dialogs dispatch={props.dispatch.bind(store)} messagesPage={props.state.messagesPage}/>}/>
+                    <Route path={'/profile'} element={<Profile dispatch={props.dispatch.bind(store)} profilePage={props.state.profilePage}/>}/>
                 </Routes>
             </div>
         </div>
