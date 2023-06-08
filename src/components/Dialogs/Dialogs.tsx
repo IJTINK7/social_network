@@ -8,7 +8,6 @@ import {RootActionType} from "../../types/actionType";
 import {rerenderEntireTree} from "../../index";
 
 
-
 type DialogsPropsType = {
     messagesPage: MessagePageType
     dispatch: (action:RootActionType) => void
@@ -57,5 +56,3 @@ export const Dialogs: React.FC<DialogsPropsType> = (props) => {
         </div>
     )
 }
-
-export default Dialogs;

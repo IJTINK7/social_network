@@ -73,7 +73,7 @@ export const store: StoreType = {
             ],
             updateMessage: ''
         },
-    } as StateType,
+    },
     _callSubscriber(state: StateType) {
         console.log("state");
     },
