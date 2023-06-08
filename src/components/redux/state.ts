@@ -35,8 +35,16 @@ export type MessagesDateType = {
     message: string
 }
 
+export type StoreType = {
+    _state: StateType
+    _callSubscriber: (state: StateType) => void
+    subsribe: (obsrver: (state: StateType) => void ) => void
+    getState: () => StateType
+    dispatch: (action:RootActionType) => void
+}
 
-export const store = {
+
+export const store: StoreType = {
     _state: {
         profilePage: {
             posts: [
