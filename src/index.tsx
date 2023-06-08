@@ -3,9 +3,10 @@ import reportWebVitals from './reportWebVitals';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import {BrowserRouter} from 'react-router-dom';
-import  {store, StateType} from './components/redux/state';
+import { BrowserRouter } from 'react-router-dom';
+import { store, StateType } from './components/redux/state';
 
+//аргументы функции!
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
@@ -14,13 +15,14 @@ export let rerenderEntireTree = (state: StateType) => {
     root.render(
         <BrowserRouter>
             <React.StrictMode>
-                <App state={store.getState()} dispatch={store.dispatch}/>
+                <App state={store.getState()} dispatch={store.dispatch.bind(store)}
+                />
             </React.StrictMode>
         </BrowserRouter>
     );
 }
 
-store._subscribe(rerenderEntireTree)
+store.subsribe(rerenderEntireTree)
 rerenderEntireTree(store.getState());
 
 reportWebVitals();

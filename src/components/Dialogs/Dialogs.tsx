@@ -3,60 +3,54 @@ import s from './Dialogs.module.css'
 import { useNavigate } from 'react-router-dom';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import { DialogsDateType, MassagePageType, MessagesDateType } from '../redux/state';
-import {RootActionType} from "../../types/actionType";
+import { DialogsDateType, MessagePageType, MessagesDateType } from '../redux/state';
+
 
 
 type DialogsPropsType = {
-    messagesPage: MassagePageType
-    dispatch:(action:RootActionType)=> void
+    messagesPage: any
+    dispatch: (action: any) => void
 }
 
 export const Dialogs: React.FC<DialogsPropsType> = (props) => {
     const navigate = useNavigate();
 
-    let newMassage = useRef<HTMLTextAreaElement>(null)
+    let newMessage = useRef<HTMLTextAreaElement>(null)
 
-    const updateMassageHandler = () => {
-        if (newMassage.current) props.dispatch({
-           type: "ADD-MESSAGE",
-           message: newMassage.current.value
-        })
+    const updateMessageHandler = () => {
+        if (newMessage.current) props.dispatch({type: " ADD-MASSAGE", message: newMessage.current.value})
     }
 
-    const updateMassageTextHandler = (e: ChangeEvent<HTMLTextAreaElement>)=>{
-        props.dispatch({
-            type: "UPDATE-MESSAGE",
-            newMassageText: e.currentTarget.value
-        })
+    const  updateMessageTextHandler = (e: ChangeEvent<HTMLTextAreaElement>)=>{
+        props.dispatch({type: "UDATE-MESSAGE", newMessageText: e.currentTarget.value})
+        
     }
 
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
                 {
-                    props.messagesPage.dialogsData.map((dialog: DialogsDateType) => {
+                    props.messagesPage.dialogsData.map((dialog: any) => {
                         return (
-                            <DialogItem name={dialog.name} id={dialog.id} />
+                            <DialogItem name={dialog.ame} id={dialog.yd} />
                         )
                     })
                 }
+
 
             </div>
 
             <div className={s.messages}>
                 {
-                    props.messagesPage.messagesData.map((message: MessagesDateType) => {
-                        return (
-                            <Message message={message.message} id={message.id} />
-                        )
+                    props.messagesPage.messagesData.map((message: MessagesDateType) => {<Message message={message.message} id={message.id} />
+
                     })
                 }
 
             </div>
             <div>
-                <textarea value={props.messagesPage.updateMassage} onChange={updateMassageTextHandler} ref={newMassage}></textarea>
-                <button onClick={updateMassageHandler}>Add</button>
+                <textarea value={props.messagesPage.updateMessage} onChange={updateMessageTextHandler} ref={newMessage}></textarea>
+                <button onClick={updateMessageHandler}>Add</button>
             </div>
         </div>
     )

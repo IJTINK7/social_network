@@ -1,12 +1,10 @@
-// import { rerenderEntireTree } from '../../render';
+import { RootActionType } from "../../types/actionType"
 
-import {RootActionType} from "../../types/actionType";
-
-// let rerenderEntireTreeCopy = (state: StateType)=>{}
+//исправить типизацию объекта store
 
 export type StateType = {
     profilePage: ProfilePageType,
-    messagesPage: MassagePageType
+    messagesPage: MessagePageType
 }
 
 export type PostType = {
@@ -20,10 +18,10 @@ export type ProfilePageType = {
     updateText: string
 }
 
-export type MassagePageType = {
+export type MessagePageType = {
     dialogsData: DialogsDateType[]
     messagesData: MessagesDateType[]
-    updateMassage:string
+    updateMessage: string
 }
 
 
@@ -37,12 +35,13 @@ export type MessagesDateType = {
     message: string
 }
 
+
 export const store = {
     _state: {
         profilePage: {
             posts: [
                 { id: 1, message: 'my first post', likesCount: 12 },
-                { id: 2, message: 'how are you ?', likesCount: 11 },
+                { id: 2, message: 'how care you ?', likesCount: 11 },
                 { id: 3, message: 'put likes', likesCount: 17 }
             ],
             updateText: '',
@@ -64,20 +63,21 @@ export const store = {
                 { id: 5, message: 'Yo' },
                 { id: 6, message: 'Yo' },
             ],
-            updateMassage:''
+            updateMessage: ''
         },
     } as StateType,
-    _subscribe (observer: (state: StateType)=>void){
-        this._callSubscriber = observer
+    _callSubscriber(state: StateType) {
+        console.log("state");
     },
-    _callSubscriber(state: StateType){
-        console.log("state")
+    subsribe(obsrver: (state: StateType) => void) {
+        this._callSubscriber = obsrver
     },
-    getState(){
+    getState() {
         return this._state
     },
-    dispatch(action: RootActionType) {
-        if (action.type === "ADD-POST") {
+
+    dispatch(action:RootActionType) {
+         if(action.type === "ADD-POST"){
             let newPost = {
                 id: 5,
                 message: action.newMessage,
@@ -86,62 +86,20 @@ export const store = {
             this._state.profilePage.posts.unshift(newPost)
             this._state.profilePage.updateText = ''
             this._callSubscriber(this._state);
-        } else if (action.type === "UPDATE-TEXT") {
+         } else if (action.type === "UPDATE-TEXT"){
             this._state.profilePage.updateText = action.newText
             this._callSubscriber(this._state);
-        } else if (action.type === "UPDATE-MESSAGE") {
-            this._state.messagesPage.updateMassage = action.newMassageText
+         } else if(action.type === "UPDATE-MESSAGE"){
+            this._state.messagesPage.updateMessage = action.newMessageText
             this._callSubscriber(this._state);
-        }else if(action.type === "ADD-MESSAGE"){
+         }else if(action.type === " ADD-MESSAGE"){
             let newMessage = {
                 id: 9,
                 message: action.message
             }
             this._state.messagesPage.messagesData.push(newMessage)
-            this._state.messagesPage.updateMassage = ''
+            this._state.messagesPage.updateMessage = ''
             this._callSubscriber(this._state);
-        }
-
-    },
+         }
+    }
 }
-// export let state: StateType = {
-//     profilePage: {
-//         posts: [
-//             { id: 1, message: 'my first post', likesCount: 12 },
-//             { id: 2, message: 'how are you ?', likesCount: 11 },
-//             { id: 3, message: 'put likes', likesCount: 17 }
-//         ],
-//         updateText: '',
-//     },
-//     messagesPage: {
-//         dialogsData: [
-//             { id: 1, name: 'Yulia' },
-//             { id: 2, name: 'semen' },
-//             { id: 3, name: 'Tereza' },
-//             { id: 4, name: 'Lola' },
-//             { id: 5, name: 'Evgenia' },
-//             { id: 6, name: 'Sonja' }
-//         ],
-//         messagesData: [
-//             { id: 1, message: 'Hi' },
-//             { id: 2, message: 'How is your it-Kamasutra?' },
-//             { id: 3, message: 'Yo' },
-//             { id: 4, message: 'Yo' },
-//             { id: 5, message: 'Yo' },
-//             { id: 6, message: 'Yo' },
-//         ],
-//         updateMassage:''
-//     },
-//
-//
-// }
-
-
-// Показать дебагером работу flux
-// Пофиксить что бы брали значение поста в state / рассказать что нарушаем функциональное 
-// Написать функцию добавления нового сообщения
-// Написать функцию добавления нового символа updateMassageText      
-// Добавление постов и сообщение по Enter
-// Добавить обнудение в инпуты
-
-// 37 урок

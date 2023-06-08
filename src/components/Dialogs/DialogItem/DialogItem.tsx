@@ -15,7 +15,7 @@ const DialogItem = (props:any) => {
         }}
         className={s.dialog + " " + s.active}
     >
-        {props.name}
+        {props.ame}
     </div>
 }
 export default DialogItem;
