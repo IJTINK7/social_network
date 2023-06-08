@@ -100,7 +100,7 @@ export const store: StoreType = {
          } else if(action.type === "UPDATE-MESSAGE"){
             this._state.messagesPage.updateMessage = action.newMessageText
             this._callSubscriber(this._state);
-         }else if(action.type === " ADD-MESSAGE"){
+         }else if(action.type === "ADD-MESSAGE"){
             let newMessage = {
                 id: 9,
                 message: action.message

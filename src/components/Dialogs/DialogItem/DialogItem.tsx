@@ -7,7 +7,7 @@ type DialogItemPropsType = {
     id: number
 }
 
-const DialogItem = (props:any) => {
+const DialogItem = (props:DialogItemPropsType) => {
     const navigate = useNavigate();
     return <div
         onClick={() => {
@@ -15,7 +15,7 @@ const DialogItem = (props:any) => {
         }}
         className={s.dialog + " " + s.active}
     >
-        {props.ame}
+        {props.name}
     </div>
 }
 export default DialogItem;

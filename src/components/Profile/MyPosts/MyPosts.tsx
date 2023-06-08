@@ -19,11 +19,11 @@ const MyPosts = (props:MyPostsProps) => {
     let postsElements = props.myPosts.map(((el) => <Post key={el.id} title={el.message} likesCount={el.likesCount}/>))
     
     const addPost = () => {
-        if(newTextElement.current) props.dispatch({type: "AD-POST", newMessage: newTextElement.current.value})
+        if(newTextElement.current) props.dispatch({type: "ADD-POST", newMessage: newTextElement.current.value})
     }
 
     const updateTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch({type: "DATE-TEXT", newText: e.currentTarget.value})
+        props.dispatch({type: "UPDATE-TEXT", newText: e.currentTarget.value})
     }
 
     const onKeyDownHandler = (e: KeyboardEvent<HTMLTextAreaElement>)=>{
