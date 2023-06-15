@@ -3,6 +3,7 @@ import s from './MyPosts.module.css';
 import { PostType } from '../../store/state';
 import Post from './Post/Post';
 import { RootActionType } from '../../../types/actionType';
+import {addPostAC, updateTextAC} from "../../store/reducers/profileReducer";
 
 type MyPostsProps = {
     myPosts: PostType[]
@@ -19,11 +20,11 @@ const MyPosts = (props:MyPostsProps) => {
     let postsElements = props.myPosts.map(((el) => <Post key={el.id} title={el.message} likesCount={el.likesCount}/>))
     
     const addPost = () => {
-        if(newTextElement.current) props.dispatch({type: "ADD-POST", newMessage: newTextElement.current.value})
+        if(newTextElement.current) props.dispatch(addPostAC(newTextElement.current.value))
     }
 
     const updateTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch({type: "UPDATE-TEXT", newText: e.currentTarget.value})
+        props.dispatch(updateTextAC(e.currentTarget.value))
     }
 
     const onKeyDownHandler = (e: KeyboardEvent<HTMLTextAreaElement>)=>{

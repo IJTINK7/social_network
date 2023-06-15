@@ -6,6 +6,7 @@ import Message from './Message/Message';
 import { DialogsDateType, MessagePageType, MessagesDateType } from '../store/state';
 import {RootActionType} from "../../types/actionType";
 import {rerenderEntireTree} from "../../index";
+import {addMessageAC, updateMessageAC} from "../store/reducers/dialogsReducer";
 
 
 type DialogsPropsType = {
@@ -19,12 +20,11 @@ export const Dialogs: React.FC<DialogsPropsType> = (props) => {
     let newMessage = useRef<HTMLTextAreaElement>(null)
 
     const updateMessageHandler = () => {
-        if (newMessage.current) props.dispatch({type: "ADD-MESSAGE", message: newMessage.current.value})
+        if (newMessage.current) props.dispatch(addMessageAC(newMessage.current.value))
     }
 
     const updateMessageTextHandler = (e: ChangeEvent<HTMLTextAreaElement>)=>{
-        props.dispatch({type: "UPDATE-MESSAGE", newMessageText: e.currentTarget.value})
-        
+        props.dispatch(updateMessageAC(e.currentTarget.value))
     }
 
     return (
