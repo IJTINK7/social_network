@@ -2,7 +2,28 @@
 import {AddMessageActionType, RootActionType, UpdateMessageTextActionType} from "../../../types/actionType";
 import {MessagePageType} from "../state";
 
-export const dialogsReducer = (state: MessagePageType, action: RootActionType): MessagePageType => {
+const initialState: MessagePageType = {
+	dialogsData: [
+		{ id: 1, name: 'Yulia' },
+		{ id: 2, name: 'semen' },
+		{ id: 3, name: 'Tereza' },
+		{ id: 4, name: 'Lola' },
+		{ id: 5, name: 'Evgenia' },
+		{ id: 6, name: 'Sonja' }
+	],
+	messagesData: [
+		{ id: 1, message: 'Hi' },
+		{ id: 2, message: 'How is your it-Kamasutra?' },
+		{ id: 3, message: 'Yo' },
+		{ id: 4, message: 'Yo' },
+		{ id: 5, message: 'Yo' },
+		{ id: 6, message: 'Yo' },
+	],
+	updateMessage: ''
+}
+
+
+export const dialogsReducer = (state: MessagePageType = initialState, action: RootActionType): MessagePageType => {
 	if(action.type === "UPDATE-MESSAGE"){
 		state.updateMessage = action.newMessageText
 	}else if(action.type === "ADD-MESSAGE"){

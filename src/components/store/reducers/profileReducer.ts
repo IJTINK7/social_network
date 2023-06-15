@@ -1,7 +1,16 @@
 import {ProfilePageType} from "../state";
 import {AddPostActionType, RootActionType, UpdateTextActionType} from "../../../types/actionType";
 
-export const profileReducer = (state: ProfilePageType, action: RootActionType): ProfilePageType => {
+const initialState: ProfilePageType = {
+	posts: [
+		{ id: 1, message: 'my first post', likesCount: 12 },
+		{ id: 2, message: 'how care you ?', likesCount: 11 },
+		{ id: 3, message: 'put likes', likesCount: 17 }
+	],
+	updateText: '',
+}
+
+export const profileReducer = (state: ProfilePageType = initialState, action: RootActionType): ProfilePageType => {
 	if (action.type === "ADD-POST") {
 		let newPost = {
 			id: 5,

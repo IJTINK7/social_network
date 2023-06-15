@@ -4,14 +4,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import { store, StateType } from './components/store/state';
+import {AppRootStateType, store} from "./components/store/reduxStore/storeRedux";
 
 //аргументы функции!
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 
-export let rerenderEntireTree = (state: StateType) => {
+export let rerenderEntireTree = (state: AppRootStateType) => {
     root.render(
         <BrowserRouter>
             <React.StrictMode>
@@ -22,7 +22,10 @@ export let rerenderEntireTree = (state: StateType) => {
     );
 }
 
-store.subsribe(rerenderEntireTree)
+store.subscribe(() => {
+    let state = store.getState()
+    rerenderEntireTree(state)
+})
 rerenderEntireTree(store.getState());
 
 reportWebVitals();
