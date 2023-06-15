@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import { store, StateType } from './components/redux/state';
+import { store, StateType } from './components/store/state';
 
 //аргументы функции!
 const root = ReactDOM.createRoot(

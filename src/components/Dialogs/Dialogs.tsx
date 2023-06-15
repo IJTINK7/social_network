@@ -3,7 +3,7 @@ import s from './Dialogs.module.css'
 import { useNavigate } from 'react-router-dom';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import { DialogsDateType, MessagePageType, MessagesDateType } from '../redux/state';
+import { DialogsDateType, MessagePageType, MessagesDateType } from '../store/state';
 import {RootActionType} from "../../types/actionType";
 import {rerenderEntireTree} from "../../index";
 

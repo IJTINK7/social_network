@@ -5,7 +5,7 @@ import Nav from './components/Nav/Nav';
 import Profile from './components/Profile/Profile';
 import { Dialogs } from './components/Dialogs/Dialogs';
 import { Route, Routes } from 'react-router-dom';
-import { StateType } from './components/redux/state';
+import { StateType } from './components/store/state';
 import { RootActionType } from './types/actionType';
 
 //
