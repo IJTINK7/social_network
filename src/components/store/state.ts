@@ -1,4 +1,6 @@
 import { RootActionType } from "../../types/actionType"
+import {profileReducer} from "./reducers/profileReducer";
+import {dialogsReducer} from "./reducers/dialogsReducer";
 
 //исправить типизацию объекта store
 
@@ -73,7 +75,7 @@ export const store: StoreType = {
             ],
             updateMessage: ''
         },
-    },
+    } as StateType,
     _callSubscriber(state: StateType) {
         console.log("state");
     },
@@ -85,29 +87,7 @@ export const store: StoreType = {
     },
 
     dispatch(action:RootActionType) {
-         if(action.type === "ADD-POST"){
-            let newPost = {
-                id: 5,
-                message: action.newMessage,
-                likesCount: 0
-            };
-            this._state.profilePage.posts.unshift(newPost)
-            this._state.profilePage.updateText = ''
-            this._callSubscriber(this._state);
-         } else if (action.type === "UPDATE-TEXT"){
-            this._state.profilePage.updateText = action.newText
-            this._callSubscriber(this._state);
-         } else if(action.type === "UPDATE-MESSAGE"){
-            this._state.messagesPage.updateMessage = action.newMessageText
-            this._callSubscriber(this._state);
-         }else if(action.type === "ADD-MESSAGE"){
-            let newMessage = {
-                id: 9,
-                message: action.message
-            }
-            this._state.messagesPage.messagesData.push(newMessage)
-            this._state.messagesPage.updateMessage = ''
-            this._callSubscriber(this._state);
-         }
+       profileReducer(this._state.profilePage, action);
+       dialogsReducer(this._state.messagesPage, action)
     }
 }
