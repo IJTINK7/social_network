@@ -7,7 +7,7 @@ type DialogItemPropsType = {
     id: number
 }
 
-const DialogItem = (props:DialogItemPropsType) => {
+const DialogItem = (props:any) => {
     const navigate = useNavigate();
     return <div
         onClick={() => {

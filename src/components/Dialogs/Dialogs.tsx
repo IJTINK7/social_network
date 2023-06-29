@@ -3,28 +3,28 @@ import s from './Dialogs.module.css'
 import { useNavigate } from 'react-router-dom';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import { DialogsDateType, MessagePageType, MessagesDateType } from '../store/state';
-import {RootActionType} from "../../types/actionType";
-import {rerenderEntireTree} from "../../index";
-import {addMessageAC, updateMessageAC} from "../store/reducers/dialogsReducer";
+import { DialogsDateType, MassagePageType, MessagesDateType } from '../store/state';
+import { RootActionType } from '../../types/actionType';
+import { addMessageAC, updateMessageAC } from '../store/reducers/dialogsReducer';
 
 
 type DialogsPropsType = {
-    messagesPage: MessagePageType
-    dispatch: (action:RootActionType) => void
+    messagesPage: MassagePageType
+    dispatch: (action: RootActionType) => void
 }
 
 export const Dialogs: React.FC<DialogsPropsType> = (props) => {
-    const navigate = useNavigate();
 
-    let newMessage = useRef<HTMLTextAreaElement>(null)
+    // const navigate = useNavigate();
 
-    const updateMessageHandler = () => {
-        if (newMessage.current) props.dispatch(addMessageAC(newMessage.current.value))
+    let newMassage = useRef<HTMLTextAreaElement>(null)
+
+    const updateMassageHandler = () => {
+        if (newMassage.current) props.dispatch(addMessageAC(newMassage.current.value))
     }
 
-    const updateMessageTextHandler = (e: ChangeEvent<HTMLTextAreaElement>)=>{
-        props.dispatch(updateMessageAC(e.currentTarget.value))
+    const  updateMassageTextHandler = (e: ChangeEvent<HTMLTextAreaElement>)=>{
+        props.dispatch(updateMessageAC(e.currentTarget.value))   
     }
 
     return (
@@ -44,15 +44,19 @@ export const Dialogs: React.FC<DialogsPropsType> = (props) => {
             <div className={s.messages}>
                 {
                     props.messagesPage.messagesData.map((message: MessagesDateType) => {
-                        return <Message message={message.message} id={message.id} />
+                        return (
+                            <Message message={message.message} id={message.id} />
+                        )
                     })
                 }
 
             </div>
             <div>
-                <textarea value={props.messagesPage.updateMessage} onChange={updateMessageTextHandler} ref={newMessage}></textarea>
-                <button onClick={updateMessageHandler}>Add</button>
+                <textarea value={props.messagesPage.updateMassage} onChange={updateMassageTextHandler} ref={newMassage}></textarea>
+                <button onClick={updateMassageHandler}>Add</button>
             </div>
         </div>
     )
 }
+
+export default Dialogs;

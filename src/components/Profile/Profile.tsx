@@ -7,7 +7,7 @@ import { RootActionType } from '../../types/actionType';
 type ProfileProps = {
     profilePage: ProfilePageType
     //    addPost:(postMessage: string)=> void
-    dispatch: (action: RootActionType) => void          //заменить any
+    dispatch: (action: RootActionType) => void
     // updateText: (newText: string) => void
 }
 
@@ -19,6 +19,7 @@ const Profile = (props: ProfileProps) => {
         // updateText={props.updateText} 
          dispatch={props.dispatch} newText={props.profilePage.updateText} myPosts={props.profilePage.posts} />
     </div>
+
 };
 
 export default Profile;

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+
 import classes from "./Nav.module.css";
 import {useNavigate} from "react-router-dom";
 
@@ -11,9 +11,9 @@ const navigate = useNavigate()
 
     return <nav className={classes.nav}>
 
-        <div className={classes.item} onClick={() => {NavigateHandler('Profile')}}>Profile</div>
+        <div className={classes.item} onClick={() => {NavigateHandler('profile')}}>Profile</div>
 
-        <div className={classes.item} onClick={() => {NavigateHandler('Dialogs')}}>Dialogs</div>
+        <div className={classes.item} onClick={() => {NavigateHandler('dialogs')}}>Dialogs</div>
 
         <div className={classes.item} onClick={() => {NavigateHandler('New')}}>New</div>
 

@@ -2,13 +2,13 @@
 const ADD_POST = "ADD-POST"
 const UPDATE_TEXT = "UPDATE-TEXT"
 const UPDATE_MESSAGE = "UPDATE-MESSAGE"
-const  ADD_MESSAGE = "ADD-MESSAGE"
+const  ADD_MESSAGE = " ADD-MESSAGE"
 
-export type RootActionType = AddPostActionType | UpdateTextActionType | UpdateMessageTextActionType | AddMessageActionType
+export type RootActionType = AddPostActionType | UpdateTextActionType | UpdateMessageTextActionType | AddMassageActionType
 
 export type AddPostActionType ={
     type: typeof ADD_POST
-    newMessage: string
+    newMassage: string
 }
 
 export type UpdateTextActionType ={
@@ -18,10 +18,10 @@ export type UpdateTextActionType ={
 
 export type  UpdateMessageTextActionType ={
     type: typeof UPDATE_MESSAGE
-    newMessageText: string
+    newMassageText: string
 }
 
-export type AddMessageActionType ={
+export type AddMassageActionType ={
     type: typeof ADD_MESSAGE
     message: string
 }
