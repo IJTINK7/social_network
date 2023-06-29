@@ -1,16 +1,14 @@
 import React, { ChangeEvent, useRef } from 'react';
 import s from './Dialogs.module.css'
-import { useNavigate } from 'react-router-dom';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import { DialogsDateType, MassagePageType, MessagesDateType } from '../store/state';
-import { RootActionType } from '../../types/actionType';
+import { DialogsDateType, MessagesDateType } from '../store/state';
 import { addMessageAC, updateMessageAC } from '../store/reducers/dialogsReducer';
+import {StoreType} from "../store/reduxStore/storeRedux";
 
 
 type DialogsPropsType = {
-    messagesPage: MassagePageType
-    dispatch: (action: RootActionType) => void
+   store: StoreType
 }
 
 export const Dialogs: React.FC<DialogsPropsType> = (props) => {

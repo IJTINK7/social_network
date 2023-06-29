@@ -8,7 +8,6 @@ import { UpdateTextAC, addPostAC } from '../../store/reducers/profileReducer';
 
 type MyPostsProps = {
     myPosts: PostType[]
-    dispatch: (action: RootActionType) => void
     newText: string
 }
 
