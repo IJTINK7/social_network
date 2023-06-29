@@ -2,13 +2,13 @@ import React, { ChangeEvent, KeyboardEvent, useRef } from 'react';
 import s from './MyPosts.module.css';
 import { PostType } from '../../store/state';
 import Post from './Post/Post';
-import { RootActionType } from '../../../types/actionType';
-import { UpdateTextAC, addPostAC } from '../../store/reducers/profileReducer';
 
 
 type MyPostsProps = {
     myPosts: PostType[]
     newText: string
+    addPost: (text:string)=> void
+    updateText: (text:string)=> void
 }
 
 const MyPosts = (props: MyPostsProps) => {
@@ -20,11 +20,11 @@ const MyPosts = (props: MyPostsProps) => {
     let postsElements = props.myPosts.map(((el) => <Post key={el.id} title={el.message} likesCount={el.likesCount} />))
 
     const addPost = () => {
-        if (newTextElement.current) props.dispatch(addPostAC(newTextElement.current.value))
+        if (newTextElement.current) props.addPost(newTextElement.current.value)
     }
 
     const updateTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(UpdateTextAC(e.currentTarget.value))
+        props.updateText(e.currentTarget.value)
     }
     const onKeyDownHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === "Enter" && newTextElement.current?.value) addPost()
