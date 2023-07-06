@@ -5,7 +5,7 @@ import Nav from './components/Nav/Nav';
 import Profile from './components/Profile/Profile';
 import { Route, Routes } from 'react-router-dom';
 import { StoreType} from './components/store/reduxStore/storeRedux';
-import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
+
 
 type AppPropsType = {
     store: StoreType
@@ -21,6 +21,7 @@ function App(props: AppPropsType) {
                     {/*<Route path={'/dialogs'} element={<DialogsContainer/>} />*/}
                     <Route path={'/profile'} element={<Profile
                         store={props.store}/>} />
+                    <Route path={'/users'} element={<div>Users111</div>} />
                 </Routes>
             </div>
         </div>
