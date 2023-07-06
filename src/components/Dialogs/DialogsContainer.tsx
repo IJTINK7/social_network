@@ -8,16 +8,16 @@ import {Dispatch} from "redux";
 import {DialogsDateType} from "../store/state";
 
 
-// type mapStateToPropsType = {
-//     dialogsData: DialogsDateType[]
-//     updateMassage: string
-// }
-//
-//
-// type mapDispatchToPropsType={
-//     addMessage: (message: string)=> void
-//     updateMassage: (newMessageText:string) => void
-// }
+type mapStateToPropsType = {
+    dialogsData: DialogsDateType[]
+    updateMassage: string
+}
+
+
+type mapDispatchToPropsType={
+    addMessage: (message: string)=> void
+    updateMassage: (newMessageText:string) => void
+}
 
 const mapStateToProps = (state: AppRootStateType):mapStateToPropsType => {
     return {
