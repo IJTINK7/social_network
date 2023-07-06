@@ -5,7 +5,6 @@ import s from "./../Dialogs.module.css"
 type MessagePropsType = {
     id:number
     message: string
-
 }
 
 const Message = (props: MessagePropsType) => {

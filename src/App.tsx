@@ -5,24 +5,20 @@ import Nav from './components/Nav/Nav';
 import Profile from './components/Profile/Profile';
 import { Route, Routes } from 'react-router-dom';
 import { StoreType} from './components/store/reduxStore/storeRedux';
-import Dialogs from "./components/Dialogs/Dialogs";
-
-
+import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
 type AppPropsType = {
     store: StoreType
 }
 
-
 function App(props: AppPropsType) {
-    // debugger
     return (
         <div className="app-wrapper">
             <Header />
             <Nav />
             <div className="app-wrapper-content">
                 <Routes>
-                    <Route path={'/dialogs'} element={<Dialogs
+                    <Route path={'/dialogs'} element={<DialogsContainer
                         store={props.store}/>} />
                     <Route path={'/profile'} element={<Profile
                         store={props.store}/>} />
@@ -31,6 +27,5 @@ function App(props: AppPropsType) {
         </div>
     );
 }
-
 
 export default App;
