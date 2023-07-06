@@ -1,30 +1,40 @@
-import React, { ChangeEvent, useRef } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import {StoreType} from "../store/reduxStore/storeRedux";
+import {AppRootStateType, StoreType} from "../store/reduxStore/storeRedux";
 import {addMessageAC, updateMessageAC} from "../store/reducers/dialogsReducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
+import {Dispatch} from "redux";
+import {DialogsDateType} from "../store/state";
 
-type DialogsPropsType = {
- store: StoreType
+
+// type mapStateToPropsType = {
+//     dialogsData: DialogsDateType[]
+//     updateMassage: string
+// }
+//
+//
+// type mapDispatchToPropsType={
+//     addMessage: (message: string)=> void
+//     updateMassage: (newMessageText:string) => void
+// }
+
+const mapStateToProps = (state: AppRootStateType):mapStateToPropsType => {
+    return {
+        dialogsData: state.dialogsPage.dialogsData,
+        updateMassage: state.dialogsPage.updateMassage
+    }
+}
+const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
+    return {
+        addMessage: (message: string)=>{
+            dispatch(addMessageAC(message))
+        },
+        updateMassage: (newMessageText:string) => {
+            dispatch(updateMessageAC(newMessageText))
+        }
+    }
 }
 
-export const DialogsContainer: React.FC<DialogsPropsType> = (props) => {
-    const navigate = useNavigate();
-    const state = props.store.getState().dialogsPage
-
-    const updateMessage = (newMessageText:string) => {
-       props.store.dispatch(updateMessageAC(newMessageText))
-    }
-
-    const  addMessage = (message: string)=>{
-        props.store.dispatch(addMessageAC(message))
-
-    }
-
-    return (
-        <Dialogs state={state} addMessage={addMessage} updateMessage={updateMessage}/>
-    )
-}
-
+export const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs)
 
