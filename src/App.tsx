@@ -5,6 +5,7 @@ import Nav from './components/Nav/Nav';
 import Profile from './components/Profile/Profile';
 import { Route, Routes } from 'react-router-dom';
 import { StoreType} from './components/store/reduxStore/storeRedux';
+import {UsersContainer} from "./components/Users/UsersContainer";
 
 
 type AppPropsType = {
@@ -21,7 +22,7 @@ function App(props: AppPropsType) {
                     {/*<Route path={'/dialogs'} element={<DialogsContainer/>} />*/}
                     <Route path={'/profile'} element={<Profile
                         store={props.store}/>} />
-                    <Route path={'/users'} element={<div>Users111</div>} />
+                    <Route path={'/users'} element={<UsersContainer/>} />
                 </Routes>
             </div>
         </div>
