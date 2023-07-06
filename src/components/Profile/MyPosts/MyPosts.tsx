@@ -2,20 +2,21 @@ import React, { ChangeEvent, KeyboardEvent, useRef } from 'react';
 import s from './MyPosts.module.css';
 import { PostType } from '../../store/state';
 import Post from './Post/Post';
+import { RootActionType } from '../../../types/actionType';
+import { UpdateTextAC, addPostAC } from '../../store/reducers/profileReducer';
 
 
 type MyPostsProps = {
     myPosts: PostType[]
     newText: string
-    addPost: (text:string)=> void
-    updateText: (text:string)=> void
+    addPost:(text:string) => void
+    updateText: (text:string) => void
 }
-
+//Давайте избавимся от useRef и обсудить почему он нам здесь уже не нужен
 const MyPosts = (props: MyPostsProps) => {
 
 
     let newTextElement = useRef<HTMLTextAreaElement>(null)
-
 
     let postsElements = props.myPosts.map(((el) => <Post key={el.id} title={el.message} likesCount={el.likesCount} />))
 
