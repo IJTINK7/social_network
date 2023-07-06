@@ -26,17 +26,14 @@ const initialState:MassagePageType  = {
 export const dialogsReducer = (state: MassagePageType = initialState, action: RootActionType): MassagePageType => {
 
     if (action.type === "UPDATE-MESSAGE") {
-        state.updateMassage = action.newMassageText
-
+        return {...state, updateMassage:action.newMassageText}
     } else if (action.type === " ADD-MESSAGE") {
         let newMessage = {
             id: 9,
             message: action.message
         }
-        state.messagesData.push(newMessage)
-        state.updateMassage = ''
+        return {...state,messagesData: [...state.messagesData, newMessage], updateMassage:''}
     }
-
     return state
 }
 

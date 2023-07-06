@@ -1,6 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import {AppRootStateType, StoreType} from "../store/reduxStore/storeRedux";
+import {AppRootStateType} from "../store/reduxStore/storeRedux";
 import {addMessageAC, updateMessageAC} from "../store/reducers/dialogsReducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
@@ -12,13 +11,10 @@ type mapStateToPropsType = {
     dialogsData: DialogsDateType[]
     updateMassage: string
 }
-
-
 type mapDispatchToPropsType={
     addMessage: (message: string)=> void
     updateMassage: (newMessageText:string) => void
 }
-
 const mapStateToProps = (state: AppRootStateType):mapStateToPropsType => {
     return {
         dialogsData: state.dialogsPage.dialogsData,
