@@ -3,21 +3,21 @@ import {UserType} from "../store/reducers/usersReducer";
 
 type UsersPropsType = {
 	users: UserType[]
-	follow:(useId:number) => void
-	unfollow: (useId:number) => void
-	setUsers: (users: UserType[])=> void
+	follow: (useId: number) => void
+	unfollow: (useId: number) => void
+	setUsers: (users: UserType[]) => void
 }
 
 export const Users = (props: UsersPropsType) => {
 
 	return (
 		<div>
-			{props.users.map(u=>{
+			{props.users.map(u => {
 				return <div key={u.id}>
 					<div>
 
 						<div>
-							<img width="300px" src={u.photoUrl} alt="photoProfile" />
+							<img width="300px" src={u.photoUrl} alt="photoProfile"/>
 						</div>
 						<div>
 							{u.followed ?
