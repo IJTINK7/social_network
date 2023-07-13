@@ -1,36 +1,36 @@
-import React from 'react';
 import {AppRootStateType} from "../store/reduxStore/storeRedux";
-import {addMessageAC, updateMessageAC} from "../store/reducers/dialogsReducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
-import {DialogsDateType} from "../store/state";
+import {DialogsDateType, MessagesDateType} from "../store/state";
+import {sendMessageAC, updateNewMessageBodyAC} from "../store/reducers/dialogsReducer";
 
 
 type mapStateToPropsType = {
     dialogsData: DialogsDateType[]
-    updateMassage: string
+    messagesData: MessagesDateType[]
+    newMessageBody: string
 }
-type mapDispatchToPropsType={
-    addMessage: (message: string)=> void
-    updateMassage: (newMessageText:string) => void
+type mapDispatchToPropsType = {
+    updateNewMessageBody: (newMessageTextBody: string) => void
+    sendMessage: () => void
 }
-const mapStateToProps = (state: AppRootStateType):mapStateToPropsType => {
+
+const mapStateToProps = (state: AppRootStateType): mapStateToPropsType  => {
     return {
         dialogsData: state.dialogsPage.dialogsData,
-        updateMassage: state.dialogsPage.updateMassage
+        messagesData: state.dialogsPage.messagesData,
+        newMessageBody: state.dialogsPage.newMessageBody
     }
 }
-const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
+const mapDispatchToProps =(dispatch: Dispatch): mapDispatchToPropsType  => {
     return {
-        addMessage: (message: string)=>{
-            dispatch(addMessageAC(message))
+        updateNewMessageBody: (newMessageTextBody: string) => {
+            dispatch(updateNewMessageBodyAC(newMessageTextBody))
         },
-        updateMassage: (newMessageText:string) => {
-            dispatch(updateMessageAC(newMessageText))
-        }
+        sendMessage: () => {
+        dispatch(sendMessageAC())
+    }
     }
 }
-
 export const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs)
-

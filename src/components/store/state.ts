@@ -33,7 +33,7 @@ export type MessagesDateType = {
     message: string
 }
 
-//
+
 // export const store = {
 //     _state: {
 //         profilePage: {
@@ -82,7 +82,7 @@ export type MessagesDateType = {
 //     getState() {
 //         return this._state
 //     },
-//
+
 //     dispatch(action: RootActionType) {
 //         this._state.profilePage = profileReducer(this._state.profilePage, action)
 //         this._state.messagesPage = dialogsReducer(this._state.messagesPage, action)
